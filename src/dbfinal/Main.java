@@ -134,13 +134,18 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 
 	public void handle(ActionEvent event){
 		String in = "";
+		String q = "";
 		if (event.getSource() == q1) {
 			in = t1.getText();
-			output.setText(QueryTester.query1(in));
+			q = QueryTester.query1(in);
+			grabURL(q);
+			output.setText(q);
 		}
 		if (event.getSource() == q2) {
 			in = t1.getText();
-			output.setText(QueryTester.query2(in));
+			q = QueryTester.query2(in);
+			grabURL(q);
+			output.setText(q);
 		}
 		if (event.getSource() == q3) {
 			in = t1.getText();
@@ -196,6 +201,27 @@ public class Main extends Application implements EventHandler<ActionEvent>{
                 "Q8:  Returns the top 10 actors with the highest average scores. Must have at least k movies. \n\t\tInput: How many movies?\n"+
                 "Q9:  Show timeline of user rating by genre. \n\t\tInput: What is the user id?\n"+
                 "Q10: See all tags for specified movie. \n\t\tInput: Movie title?";
+	}
+	
+	private ArrayList<String> grabURL(String in)
+	{
+		ArrayList<String> retval = new ArrayList<String>();
+		String[] vals = in.split(" ");
+		String t = "";
+		int i = 0;
+		for(String s : vals)
+		{
+			if(s.length()>7)
+			{	
+				t = s.substring(0, 7);
+				if(t.equals("http://"))
+				{
+					retval.add(s.substring(7, s.length()-1));
+					i++;
+				}
+			}
+		}
+		return retval;
 	}
 	
 }
