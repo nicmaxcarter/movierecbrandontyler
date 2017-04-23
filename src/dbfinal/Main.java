@@ -7,12 +7,16 @@ import java.util.ArrayList;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -20,7 +24,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class Main extends Application implements EventHandler<ActionEvent>{
-	Button q1;
+	/*Button q1;
 	Button q2;
 	Button q3;
 	Button q4;
@@ -30,21 +34,232 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 	Button q8;
 	Button q9;
 	Button q10;
-	Button clear;
+	Button clear;*/
 	TextField t1;	
 	Label output;
+	Label title;
+	Button search;
+	Button show;
+	ComboBox<String> select;
+	ComboBox<String> howMany;
+	ImageView iv;
 	
 	ArrayList<String> query;
 	
 	public static void main(String[] args){
 		launch();
-
+	}
+	
+	public void start(Stage primaryStage) throws Exception{
+		primaryStage.setTitle("Movie Recommender 3000");
+		VBox layout = new VBox();
+		HBox menu = new HBox();
+		iv = new ImageView();
 		
-
+		title = new Label();
+		title.setText("Search By:");
+		title.setStyle("-fx-font: 24 arial;");
 		
+		select = new ComboBox();
+		select.getItems().addAll("Top Movies", "Movie Title", "Genre", "Director", "Actor", "Movies with tag", "Top Directors", "Top Actors", "Ratings by Id", "Movie Tags");
+		select.setMinWidth(150);
+		select.setOnAction(new EventHandler<ActionEvent>()
+		{
+			@Override public void handle(ActionEvent e)
+			{
+				handleComboBoxAction();
+			}
+		});
+		
+		howMany = new ComboBox();
+		howMany.getItems().addAll("10", "20", "50");
+		howMany.setMinWidth(70);
+		howMany.setMaxWidth(70);
+		howMany.setVisible(false);
+		
+		search = new Button();
+		search.setText("Search");
+		search.setMinWidth(70);
+		search.setMaxWidth(70);
+		search.setOnAction(this);
+		
+		t1 = new TextField();		
+		t1.setPrefWidth(710);
+		t1.setVisible(false);
+
+		ScrollPane scroll = new ScrollPane();
+		output = new Label();
+		
+		scroll.setContent(output);
+		
+		HBox picMenu = new HBox();
+		show = new Button();
+		show.setText("Show Me the Pictures!");
+		show.setMinWidth(250);
+		show.setOnAction(this);
+		picMenu.getChildren().add(show);
+		
+		menu.getChildren().addAll(select, t1, howMany, search);
+		
+		layout.getChildren().addAll(title, menu, scroll, picMenu);
+		Scene scene = new Scene(layout, 800, 500);
+		primaryStage.setScene(scene);
+		primaryStage.show();
+	}
+	
+	@Override
+	public void handle(ActionEvent event) {
+		// TODO Auto-generated method stub
+		if(event.getSource() == show){
+	        try {
+	        	HBox h = new HBox();
+	        	
+	        	
+	            Stage stage = new Stage();
+	            stage.setTitle("Movie Images");
+	            stage.setScene(new Scene(h, 450, 450));
+	            stage.show();
+	        }
+	        catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		}
+		String q = "";
+		String s = "";
+		if(select.getSelectionModel().getSelectedItem() != null){
+			s = select.getSelectionModel().getSelectedItem();
+		}
+		String in;
+		if(s.equals("Top Movies")){
+			in = howMany.getSelectionModel().getSelectedItem();
+			q = QueryTester.query1(in);
+			output.setText(q);
+		}
+		if(s.equals("Movie Title")){
+			in = t1.getText();
+			q = QueryTester.query2(in);
+			output.setText(q);
+		}
+		if(s.equals("Genre")){
+			in = t1.getText();
+			int i = Integer.parseInt(howMany.getSelectionModel().getSelectedItem());
+			q = QueryTester.query3(in, i);
+			output.setText(q);
+		}
+		if(s.equals("Director")){
+			in = t1.getText();
+			q = QueryTester.query4(in);
+			output.setText(q);
+		}
+		if(s.equals("Actor")){
+			in = t1.getText();
+			q = QueryTester.query5(in);
+			output.setText(q);
+		}
+		if(s.equals("Movies with tag")){
+			in = t1.getText();
+			q = QueryTester.query6(in);
+			output.setText(q);
+		}
+		if(s.equals("Top Directors")){
+			in = t1.getText();
+			q = QueryTester.query7(in);
+			output.setText(q);
+		}
+		if(s.equals("Top Actors")){
+			in = t1.getText();
+			q = QueryTester.query8(in);
+			output.setText(q);
+		}
+		if(s.equals("Ratings by Id")){
+			in = t1.getText();
+			q = QueryTester.query9(in);
+			output.setText(q);
+		}
+		if(s.equals("Movie Tags")){
+			in = t1.getText();
+			q = QueryTester.query10(in);
+			output.setText(q);
+		}
+		grabURL(q);
+	}
+	
+	public void handleComboBoxAction(){
+		String s = select.getSelectionModel().getSelectedItem();
+		if(s.equals("Top Movies")){
+			t1.setVisible(false);
+			howMany.setVisible(true);
+			title.setText("Search by:\tselect how many movies you want to see:");
+		}
+		if(s.equals("Movie Title")){
+			howMany.setVisible(false);
+			t1.setVisible(true);
+			title.setText("Search by:\tinput what movie you want to see:");
+		}
+		if(s.equals("Genre")){
+			howMany.setVisible(true);
+			t1.setVisible(true);
+			title.setText("Search by:\tinput the genre you are searching for:");
+		}
+		if(s.equals("Director")){
+			howMany.setVisible(false);
+			t1.setVisible(true);
+			title.setText("Search by:\tinput the director you are searching for:");
+		}
+		if(s.equals("Actor")){
+			howMany.setVisible(false);
+			t1.setVisible(true);
+			title.setText("Search by:\tinput the actor you are searching for:");
+		}
+		if(s.equals("Movies with tag")){
+			howMany.setVisible(false);
+			t1.setVisible(true);
+			title.setText("Search by:\tinput the tag you are searching for:");
+		}
+		if(s.equals("Top Directors")){
+			t1.setVisible(true);
+			howMany.setVisible(false);
+			title.setText("Search by:\tinput the required number of movies directed:");
+		}
+		if(s.equals("Top Actors")){
+			howMany.setVisible(false);
+			t1.setVisible(true);
+			title.setText("Search by:\tinput the required number of movies starred in:");
+		}
+		if(s.equals("Ratings by Id")){
+			howMany.setVisible(false);
+			t1.setVisible(true);
+			title.setText("Search by:\tinput the Id of the user you are searching for:");
+		}
+		if(s.equals("Movie Tags")){
+			howMany.setVisible(false);
+			t1.setVisible(true);
+			title.setText("Search by:\tinput the movie you want to see the tags for:");
+		}
+	}
+	
+	private ArrayList<String> grabURL(String in)
+	{
+		ArrayList<String> retval = new ArrayList<String>();
+		String[] vals = in.split(" ");
+		String t = "";
+		int i = 0;
+		for(String s : vals)
+		{
+			if(s.length()>7)
+			{	
+				t = s.substring(0, 7);
+				if(t.equals("http://"))
+				{
+					retval.add(s.substring(7, s.length()-1));
+					i++;
+				}
+			}
+		}
+		return retval;
 	}
 
-	@Override
+/*	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
 		primaryStage.setTitle("Movie Recommender 3000");
@@ -125,14 +340,10 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 		primaryStage.show();
 		
 
-	}
+	} */
 
-	private Object setAlignment(int i) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
-	public void handle(ActionEvent event){
+/*	public void handle(ActionEvent event){
 		String in = "";
 		if (event.getSource() == q1) {
 			in = t1.getText();
@@ -197,5 +408,7 @@ public class Main extends Application implements EventHandler<ActionEvent>{
                 "Q9:  Show timeline of user rating by genre. \n\t\tInput: What is the user id?\n"+
                 "Q10: See all tags for specified movie. \n\t\tInput: Movie title?";
 	}
+*/
+
 	
 }
