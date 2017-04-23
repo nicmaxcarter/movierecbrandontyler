@@ -136,41 +136,51 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 		String in = "";
 		if (event.getSource() == q1) {
 			in = t1.getText();
-                        output.setText("Test");
 			output.setText(QueryTester.query1(in));
-			
 		}
 		if (event.getSource() == q2) {
-			
+			in = t1.getText();
+			output.setText(QueryTester.query2(in));
 		}
 		if (event.getSource() == q3) {
-			
+			in = t1.getText();
+			String[] s = in.split(" ");
+			int i = Integer.parseInt(s[1]);
+			output.setText(QueryTester.query3(s[0], i));
 		}
 		if (event.getSource() == q4) {
-			
+			in = t1.getText();
+			output.setText(QueryTester.query4(in));
 		}
 		if (event.getSource() == q5) {
-			
+			in = t1.getText();
+			output.setText(QueryTester.query5(in));
 		}
 		if (event.getSource() == q6) {
-			
+			in = t1.getText();
+			output.setText(QueryTester.query6(in));
 		}
 		if (event.getSource() == q7) {
-			
+			in = t1.getText();
+			output.setText(QueryTester.query7(in));
 		}
 		if (event.getSource() == q8) {
-			
+			in = t1.getText();
+			output.setText(QueryTester.query8(in));
 		}
 		if (event.getSource() == q9) {
-			
+			in = t1.getText();
+			output.setText(QueryTester.query9(in));
 		}
 		if (event.getSource() == q10) {
-			
+			in = t1.getText();
+			output.setText(QueryTester.query10(in));
 		}
 		if(event.getSource() == clear) {
 			t1.clear();
 			output.setText(menu());
 		}
+		
 	}
 	
 	private String menu()
