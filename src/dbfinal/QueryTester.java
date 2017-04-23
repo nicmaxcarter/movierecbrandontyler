@@ -36,7 +36,6 @@ public class QueryTester {
         stmt = conn.createStatement();
         
 
-        rs.close();
         stmt.close();
         conn.close();
     }
@@ -58,7 +57,7 @@ public class QueryTester {
     }
     
     public static void close() throws SQLException{
-    	rs.close();
+    	//rs.close();
         stmt.close();
         conn.close();
     }
@@ -72,7 +71,7 @@ public class QueryTester {
    	   	catch(Exception E){
        		System.out.println("didnt open");
     	}
-    	String retval = "";
+    	String retval = "\t";
 
         String sql =    "SELECT m.title, m.year, m.rtAudienceScore, m.rtPictureURL, m.imdbPictureURL " +
                         "FROM movies m " +
@@ -91,14 +90,16 @@ public class QueryTester {
             retval += "\n";
 
             // print out each tuple
+            int j = 1;
             while (rs.next()) {
-
+            	retval += j + ".\t";
                 for (int i = 1; i <= columnsNumber; i++) {
                     if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
                     retval += columnValue;
                 }
                 retval += "\n";
+                j++;
             }
 
         } catch (SQLException ex){
@@ -111,8 +112,8 @@ public class QueryTester {
         try{
         	close();
     	}
-    	catch(Exception E){
-    		System.out.println("didnt close");
+    	catch(SQLException E){
+    		System.out.println(E);
     	}
         return retval;
     }
@@ -582,4 +583,4 @@ public class QueryTester {
    	   }
        return retval;
    }
-}
+
