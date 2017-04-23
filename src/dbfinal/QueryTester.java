@@ -67,10 +67,10 @@ public class QueryTester {
     static String query1(String n)
     {
     	try{
-        	open();
-    	}
-    	catch(Exception E){
-    		System.out.println("didnt open");
+           	open();
+   	   	}
+   	   	catch(Exception E){
+       		System.out.println("didnt open");
     	}
     	String retval = "";
 
@@ -120,7 +120,13 @@ public class QueryTester {
     // Query 2
     static String query2(String str)
    {
-   	 String retval = "";
+    	try{
+        	open();
+    	}
+    	catch(Exception E){
+    		System.out.println("didnt open");
+    	}
+   	   String retval = "";
 
        String sql =    "SELECT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, t.value " +
                        "FROM movies m, tags t, user_taggedmovies ut " +
@@ -151,7 +157,12 @@ public class QueryTester {
            retval = "Whoops you suck!";
            return retval;
        }
-       
+       try{
+       	close();
+	   }
+       catch(Exception E){
+    	   System.out.println("didnt close");
+	   }
        return retval;
       
    }
@@ -159,6 +170,12 @@ public class QueryTester {
    // Query 3
    static String query3(String str, int limit)
    {
+	   try{
+       	open();
+	   	}
+	   	catch(Exception E){
+	   		System.out.println("didnt open");
+	   	}
        String retval = "";
 
        String sql =    "SELECT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, g.genre " +
@@ -193,7 +210,12 @@ public class QueryTester {
            retval = "Whoops you suck!";
            return retval;
        }
-       
+       try{
+          	close();
+   	   }
+          catch(Exception E){
+       	   System.out.println("didnt close");
+   	   }
        return retval;
        
    }
@@ -201,6 +223,12 @@ public class QueryTester {
    // Query 4
    static String query4(String str)
    {
+	   try{
+          	open();
+  	   	}
+  	   	catch(Exception E){
+      		System.out.println("didnt open");
+  	   	}	
        String retval = "";
 
        String sql =    "SELECT DISTINCT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, d.directorname " +
@@ -234,13 +262,24 @@ public class QueryTester {
            retval = "Whoops you suck!";
            return retval;
        }
-
+       try{
+          	close();
+   	   }
+          catch(Exception E){
+       	   System.out.println("didnt close");
+   	   }
        return retval;
    }
 
    // Query 5
    static String query5(String str)
    {
+	   try{
+          	open();
+  	   	}
+  	   	catch(Exception E){
+      		System.out.println("didnt open");
+  	   	}
        String retval = "";
 
        String sql =    "SELECT DISTINCT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, a.actorname " +
@@ -274,13 +313,24 @@ public class QueryTester {
            retval = "Whoops you suck!";
            return retval;
        }
-
+       try{
+          	close();
+   	   }
+          catch(Exception E){
+       	   System.out.println("didnt close");
+   	   }
        return retval;
    }
 
    // Query 6
    static String query6(String str)
    {
+	   try{
+          	open();
+  	   	}
+  	   	catch(Exception E){
+      		System.out.println("didnt open");
+  	   	}
        String retval = "";
 
        String sql =    "SELECT DISTINCT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, t.value " +
@@ -315,13 +365,24 @@ public class QueryTester {
            retval = "Whoops you suck!";
            return retval;
        }
-
+       try{
+          	close();
+   	   }
+          catch(Exception E){
+       	   System.out.println("didnt close");
+   	   }
        return retval;
    }
 
    // Query 7
    static String query7(String k)
    {
+	   try{
+          	open();
+  	   	}
+  	   	catch(Exception E){
+      		System.out.println("didnt open");
+  	   	}
        String retval = "";
 
        String sql =    "SELECT DISTINCT directorname, AVG(rtaudiencescore) as average " +
@@ -358,13 +419,24 @@ public class QueryTester {
            retval = "Whoops you suck!";
            return retval;
        }
-
+       try{
+          	close();
+   	   }
+          catch(Exception E){
+       	   System.out.println("didnt close");
+   	   }
        return retval;
    }
 
    // Query 8
    static String query8(String k)
    {
+	   try{
+          	open();
+  	   	}
+  	   	catch(Exception E){
+      		System.out.println("didnt open");
+  	   	}
        String retval = "";
 
        String sql =    "SELECT DISTINCT actorname, AVG(rtaudiencescore) as average " +
@@ -401,13 +473,24 @@ public class QueryTester {
            retval = "Whoops you suck!";
            return retval;
        }
-
+       try{
+          	close();
+   	   }
+          catch(Exception E){
+       	   System.out.println("didnt close");
+   	   }
        return retval;
    }
 
    // Query 9
    static String query9(String k)
    {
+	   try{
+          	open();
+  	   	}
+  	   	catch(Exception E){
+      		System.out.println("didnt open");
+  	   	}
        String retval = "";
 
        String sql =    "SELECT u.userid, m.title, u.rating, g.genre " +
@@ -441,13 +524,24 @@ public class QueryTester {
            retval = "Whoops you suck!";
            return retval;
        }
-
+       try{
+          	close();
+   	   }
+          catch(Exception E){
+       	   System.out.println("didnt close");
+   	   }
        return retval;
    }
 
    // Query 10
    static String query10(String str)
    {
+	   try{
+          	open();
+  	   	}
+  	   	catch(Exception E){
+      		System.out.println("didnt open");
+  	   	}
        String retval = "";
 
        String sql =    "SELECT m.title, t.value " +
@@ -480,6 +574,12 @@ public class QueryTester {
            retval = "Whoops you suck!";
            return retval;
        }
+       try{
+          	close();
+   	   }
+          catch(Exception E){
+       	   System.out.println("didnt close");
+   	   }
        return retval;
    }
 }
