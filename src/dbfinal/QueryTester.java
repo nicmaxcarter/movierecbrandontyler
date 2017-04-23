@@ -99,19 +99,19 @@ public class QueryTester {
 
             // print out the column titles separated by tab
             for (int i = 1; i <= columnsNumber; i++) {
-                    System.out.print(rsmd.getColumnName(i) + "\t");
+                    retval += rsmd.getColumnName(i) + "\t";
                 }
-            System.out.println();
+            retval += "\n";
 
             // print out each tuple
             while (rs.next()) {
 
                 for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
+                    if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
-                    System.out.print(columnValue);
+                    retval += columnValue;
                 }
-                System.out.println();
+                retval += "\n";
             }
 
         } catch (SQLException ex){
@@ -126,7 +126,7 @@ public class QueryTester {
     // Query 3
     static void query3(String str, int limit)
     {
-        System.out.println("\n\n");
+        String retval = "";
 
         String sql =    "SELECT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, g.genre " +
                         "FROM movies m, movie_genres g " +
@@ -141,32 +141,34 @@ public class QueryTester {
 
             // print out the column titles separated by tab
             for (int i = 1; i <= columnsNumber; i++) {
-                    System.out.print(rsmd.getColumnName(i) + "\t");
+                    retval += rsmd.getColumnName(i) + "\t";
                 }
-            System.out.println();
+            retval += "\n";
 
             // print out each tuple
             while (rs.next()) {
 
                 for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
+                    if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
-                    System.out.print(columnValue);
+                    retval += columnValue;
                 }
-                System.out.println();
+                retval += "\n";
             }
 
         } catch (SQLException ex){
-            System.out.println("Whoops you suck!");
+            retval = "Whoops you suck!";
+            return retval;
         }
-
-        System.out.println("\n\n");
+        
+        return retval;
+        
     }
 
     // Query 4
     static void query4(String str)
     {
-        System.out.println("\n\n");
+        String retval = "";
 
         String sql =    "SELECT DISTINCT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, d.directorname " +
                         "FROM movies m, movie_directors d " +
@@ -180,32 +182,33 @@ public class QueryTester {
 
             // print out the column titles separated by tab
             for (int i = 1; i <= columnsNumber; i++) {
-                    System.out.print(rsmd.getColumnName(i) + "\t");
+                    retval += rsmd.getColumnName(i) + "\t";
                 }
-            System.out.println();
+            retval += "\n";
 
             // print out each tuple
             while (rs.next()) {
 
                 for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
+                    if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
-                    System.out.print(columnValue);
+                    retval += columnValue;
                 }
-                System.out.println();
+                retval += "\n";
             }
 
         } catch (SQLException ex){
-            System.out.println("Whoops you suck!");
+            retval = "Whoops you suck!";
+            return retval;
         }
 
-        System.out.println("\n\n");
+        return retval;
     }
 
     // Query 5
     static void query5(String str)
     {
-        System.out.println("\n\n");
+        String retval = "";
 
         String sql =    "SELECT DISTINCT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, a.actorname " +
                         "FROM movies m, movie_actors a " +
@@ -219,32 +222,33 @@ public class QueryTester {
 
             // print out the column titles separated by tab
             for (int i = 1; i <= columnsNumber; i++) {
-                    System.out.print(rsmd.getColumnName(i) + "\t");
+                    retval += rsmd.getColumnName(i) + "\t";
                 }
-            System.out.println();
+            retval += "\n";
 
             // print out each tuple
             while (rs.next()) {
 
                 for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
+                    if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
-                    System.out.print(columnValue);
+                    retval += columnValue;
                 }
-                System.out.println();
+                retval += "\n";
             }
 
         } catch (SQLException ex){
-            System.out.println("Whoops you suck!");
+            retval = "Whoops you suck!";
+            return retval;
         }
 
-        System.out.println("\n\n");
+        return retval;
     }
 
     // Query 6
     static void query6(String str)
     {
-        System.out.println("\n\n");
+        String retval = "";
 
         String sql =    "SELECT DISTINCT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, t.value " +
                         "FROM movies m, movie_tags mt, tags t " +
@@ -259,32 +263,33 @@ public class QueryTester {
 
             // print out the column titles separated by tab
             for (int i = 1; i <= columnsNumber; i++) {
-                    System.out.print(rsmd.getColumnName(i) + "\t");
+                    retval += rsmd.getColumnName(i) + "\t";
                 }
-            System.out.println();
+            retval += "\n";
 
             // print out each tuple
             while (rs.next()) {
 
                 for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
+                    if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
-                    System.out.print(columnValue);
+                    retval += columnValue;
                 }
-                System.out.println();
+                retval += "\n";
             }
 
         } catch (SQLException ex){
-            System.out.println("Whoops you suck!");
+            retval = "Whoops you suck!";
+            return retval;
         }
 
-        System.out.println("\n\n");
+        return retval;
     }
 
     // Query 7
-    static void query7(int k)
+    static void query7(String k)
     {
-        System.out.println("\n\n");
+        String retval = "";
 
         String sql =    "SELECT DISTINCT directorname, AVG(rtaudiencescore) as average " +
                         "FROM movies, movie_directors " +
@@ -301,32 +306,33 @@ public class QueryTester {
 
             // print out the column titles separated by tab
             for (int i = 1; i <= columnsNumber; i++) {
-                    System.out.print(rsmd.getColumnName(i) + "\t");
+                    retval += rsmd.getColumnName(i) + "\t";
                 }
-            System.out.println();
+            retval += "\n";
 
             // print out each tuple
             while (rs.next()) {
 
                 for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
+                    if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
-                    System.out.print(columnValue);
+                    retval += columnValue;
                 }
-                System.out.println();
+                retval += "\n";
             }
 
         } catch (SQLException ex){
-            System.out.println("Whoops you suck!");
+            retval = "Whoops you suck!";
+            return retval;
         }
 
-        System.out.println("\n\n");
+        return retval;
     }
 
     // Query 8
-    static void query8(int k)
+    static void query8(String k)
     {
-        System.out.println("\n\n");
+        String retval = "";
 
         String sql =    "SELECT DISTINCT actorname, AVG(rtaudiencescore) as average " +
                         "FROM movies, movie_actors " +
@@ -343,32 +349,33 @@ public class QueryTester {
 
             // print out the column titles separated by tab
             for (int i = 1; i <= columnsNumber; i++) {
-                    System.out.print(rsmd.getColumnName(i) + "\t");
+                    retval += rsmd.getColumnName(i) + "\t";
                 }
-            System.out.println();
+            retval += "\n";
 
             // print out each tuple
             while (rs.next()) {
 
                 for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
+                    if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
-                    System.out.print(columnValue);
+                    retval += columnValue;
                 }
-                System.out.println();
+                retval += "\n";
             }
 
         } catch (SQLException ex){
-            System.out.println("Whoops you suck!");
+            retval = "Whoops you suck!";
+            return retval;
         }
 
-        System.out.println("\n\n");
+        return retval;
     }
 
     // Query 9
-    static void query9(int k)
+    static void query9(String k)
     {
-        System.out.println("\n\n");
+        String retval = "";
 
         String sql =    "SELECT u.userid, m.title, u.rating, g.genre " +
                         "FROM user_ratedmovies u, movies m, movie_genres g " +
@@ -382,32 +389,33 @@ public class QueryTester {
 
             // print out the column titles separated by tab
             for (int i = 1; i <= columnsNumber; i++) {
-                    System.out.print(rsmd.getColumnName(i) + "\t");
+                    retval += rsmd.getColumnName(i) + "\t";
                 }
-            System.out.println();
+            retval += "\n";
 
             // print out each tuple
             while (rs.next()) {
 
                 for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
+                    if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
-                    System.out.print(columnValue);
+                    retval += columnValue;
                 }
-                System.out.println();
+                retval += "\n";
             }
 
         } catch (SQLException ex){
-            System.out.println("Whoops you suck!");
+            retval = "Whoops you suck!";
+            return retval;
         }
 
-        System.out.println("\n\n");
+        return retval;
     }
 
     // Query 10
     static void query10(String str)
     {
-        System.out.println("\n\n");
+        String retval = "";
 
         String sql =    "SELECT m.title, t.value " +
                         "FROM movies m, tags t, movie_tags mt " +
@@ -420,24 +428,25 @@ public class QueryTester {
 
             // print out the column titles separated by tab
             for (int i = 1; i <= columnsNumber; i++) {
-                    System.out.print(rsmd.getColumnName(i) + "\t");
+                    retval += rsmd.getColumnName(i) + "\t";
                 }
-            System.out.println();
+            retval += "\n";
 
             // print out each tuple
             while (rs.next()) {
 
                 for (int i = 1; i <= columnsNumber; i++) {
-                    if (i > 1) System.out.print(",  ");
+                    if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
-                    System.out.print(columnValue);
+                    retval += columnValue;
                 }
-                System.out.println();
+                retval += "\n";
             }
 
         } catch (SQLException ex){
-            System.out.println("Whoops you suck!");
+            retval = "Whoops you suck!";
+            return retval;
         }
-        System.out.println("\n\n");
+        return retval;
     }
 }
