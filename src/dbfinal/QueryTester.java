@@ -92,7 +92,7 @@ public class QueryTester {
             // print out each tuple
             int j = 1;
             while (rs.next()) {
-            	retval += j + ".\t";
+            	retval += " " + j + ".\t";
                 for (int i = 1; i <= columnsNumber; i++) {
                     if (i > 1) retval += ",  ";
                     String columnValue = rs.getString(i);
@@ -127,7 +127,7 @@ public class QueryTester {
     	catch(Exception E){
     		System.out.println("didnt open");
     	}
-   	   String retval = "";
+   	   String retval = "\t";
 
        String sql =    "SELECT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, t.value " +
                        "FROM movies m, tags t, user_taggedmovies ut " +
@@ -144,7 +144,9 @@ public class QueryTester {
            retval += "\n";
 
            // print out each tuple
+           int j = 1;
            while (rs.next()) {
+           	retval += j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -152,6 +154,7 @@ public class QueryTester {
                    retval += columnValue;
                }
                retval += "\n";
+               j++;
            }
 
        } catch (SQLException ex){
@@ -177,7 +180,7 @@ public class QueryTester {
 	   	catch(Exception E){
 	   		System.out.println("didnt open");
 	   	}
-       String retval = "";
+       String retval = "\t";
 
        String sql =    "SELECT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, g.genre " +
                        "FROM movies m, movie_genres g " +
@@ -197,7 +200,9 @@ public class QueryTester {
            retval += "\n";
 
            // print out each tuple
+           int j = 1;
            while (rs.next()) {
+           	retval += j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -205,6 +210,7 @@ public class QueryTester {
                    retval += columnValue;
                }
                retval += "\n";
+               j++;
            }
 
        } catch (SQLException ex){
@@ -230,7 +236,7 @@ public class QueryTester {
   	   	catch(Exception E){
       		System.out.println("didnt open");
   	   	}	
-       String retval = "";
+       String retval = "\t";
 
        String sql =    "SELECT DISTINCT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, d.directorname " +
                        "FROM movies m, movie_directors d " +
@@ -249,7 +255,9 @@ public class QueryTester {
            retval += "\n";
 
            // print out each tuple
+           int j = 1;
            while (rs.next()) {
+           	retval += j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -257,6 +265,7 @@ public class QueryTester {
                    retval += columnValue;
                }
                retval += "\n";
+               j++;
            }
 
        } catch (SQLException ex){
@@ -281,7 +290,7 @@ public class QueryTester {
   	   	catch(Exception E){
       		System.out.println("didnt open");
   	   	}
-       String retval = "";
+       String retval = "\t";
 
        String sql =    "SELECT DISTINCT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, a.actorname " +
                        "FROM movies m, movie_actors a " +
@@ -300,7 +309,9 @@ public class QueryTester {
            retval += "\n";
 
            // print out each tuple
+           int j = 1;
            while (rs.next()) {
+           	retval += j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -308,6 +319,7 @@ public class QueryTester {
                    retval += columnValue;
                }
                retval += "\n";
+               j++;
            }
 
        } catch (SQLException ex){
@@ -332,7 +344,7 @@ public class QueryTester {
   	   	catch(Exception E){
       		System.out.println("didnt open");
   	   	}
-       String retval = "";
+       String retval = "\t";
 
        String sql =    "SELECT DISTINCT m.title, m.year, m.rtaudiencescore, rtpictureurl, m.imdbpictureurl, t.value " +
                        "FROM movies m, movie_tags mt, tags t " +
@@ -352,7 +364,9 @@ public class QueryTester {
            retval += "\n";
 
            // print out each tuple
+           int j = 1;
            while (rs.next()) {
+           	retval += j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -360,6 +374,7 @@ public class QueryTester {
                    retval += columnValue;
                }
                retval += "\n";
+               j++;
            }
 
        } catch (SQLException ex){
@@ -384,7 +399,7 @@ public class QueryTester {
   	   	catch(Exception E){
       		System.out.println("didnt open");
   	   	}
-       String retval = "";
+       String retval = "\t";
 
        String sql =    "SELECT DISTINCT directorname, AVG(rtaudiencescore) as average " +
                        "FROM movies, movie_directors " +
@@ -406,7 +421,9 @@ public class QueryTester {
            retval += "\n";
 
            // print out each tuple
+           int j = 1;
            while (rs.next()) {
+           	retval += j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -414,6 +431,7 @@ public class QueryTester {
                    retval += columnValue;
                }
                retval += "\n";
+               j++;
            }
 
        } catch (SQLException ex){
@@ -438,7 +456,7 @@ public class QueryTester {
   	   	catch(Exception E){
       		System.out.println("didnt open");
   	   	}
-       String retval = "";
+       String retval = "\t";
 
        String sql =    "SELECT DISTINCT actorname, AVG(rtaudiencescore) as average " +
                        "FROM movies, movie_actors " +
@@ -460,7 +478,9 @@ public class QueryTester {
            retval += "\n";
 
            // print out each tuple
+           int j = 1;
            while (rs.next()) {
+           	retval += j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -468,6 +488,7 @@ public class QueryTester {
                    retval += columnValue;
                }
                retval += "\n";
+               j++;
            }
 
        } catch (SQLException ex){
@@ -492,7 +513,7 @@ public class QueryTester {
   	   	catch(Exception E){
       		System.out.println("didnt open");
   	   	}
-       String retval = "";
+       String retval = "\t";
 
        String sql =    "SELECT u.userid, m.title, u.rating, g.genre " +
                        "FROM user_ratedmovies u, movies m, movie_genres g " +
@@ -511,7 +532,9 @@ public class QueryTester {
            retval += "\n";
 
            // print out each tuple
+           int j = 1;
            while (rs.next()) {
+           	retval += j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -519,6 +542,7 @@ public class QueryTester {
                    retval += columnValue;
                }
                retval += "\n";
+               j++;
            }
 
        } catch (SQLException ex){
@@ -543,7 +567,7 @@ public class QueryTester {
   	   	catch(Exception E){
       		System.out.println("didnt open");
   	   	}
-       String retval = "";
+       String retval = "\t";
 
        String sql =    "SELECT m.title, t.value " +
                        "FROM movies m, tags t, movie_tags mt " +
@@ -561,7 +585,9 @@ public class QueryTester {
            retval += "\n";
 
            // print out each tuple
+           int j = 1;
            while (rs.next()) {
+           	retval += j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -569,6 +595,7 @@ public class QueryTester {
                    retval += columnValue;
                }
                retval += "\n";
+               j++;
            }
 
        } catch (SQLException ex){
@@ -583,4 +610,114 @@ public class QueryTester {
    	   }
        return retval;
    }
+   
+   // Query 11
+   static String query11(String str)
+   {
+	   try{
+          	open();
+  	   	}
+  	   	catch(Exception E){
+      		System.out.println("didnt open");
+  	   	}
+       String retval = "\t";
 
+       String sql =     "SELECT m.title, m.year, m.rtAudienceScore, m.rtPictureURL, m.imdbPictureURL " +
+    		   			"FROM movies m, movie_genres g " +
+    		   			"WHERE m.id = g.movieID AND g.genre LIKE '%" + str + "%' " +
+    		   			"ORDER BY m.rtAudienceScore DESC " +
+    		   			"LIMIT 5";
+       
+       try {
+           ResultSet rs = stmt.executeQuery(sql);
+           ResultSetMetaData rsmd = rs.getMetaData();
+           int columnsNumber = rsmd.getColumnCount();
+
+           // print out the column titles separated by tab
+           for (int i = 1; i <= columnsNumber; i++) {
+                   retval += rsmd.getColumnName(i) + "\t";
+               }
+           retval += "\n";
+
+           // print out each tuple
+           int j = 1;
+           while (rs.next()) {
+           	retval += j + ".\t";
+
+               for (int i = 1; i <= columnsNumber; i++) {
+                   if (i > 1) retval += ",  ";
+                   String columnValue = rs.getString(i);
+                   retval += columnValue;
+               }
+               retval += "\n";
+               j++;
+           }
+
+       } catch (SQLException ex){
+           retval = "Whoops you suck!";
+           return retval;
+       }
+       try{
+          	close();
+   	   }
+          catch(Exception E){
+       	   System.out.println("didnt close");
+   	   }
+       return retval;
+   }
+   
+   // Query 12
+   static String query12(String str)
+   {
+	   try{
+          	open();
+  	   	}
+  	   	catch(Exception E){
+      		System.out.println("didnt open");
+  	   	}
+       String retval = "\t";
+
+       String sql =     "SELECT m.title, m.year, m.rtAudienceScore, m.rtPictureURL, m.imdbPictureURL " +
+    		   			"FROM movies m, movie_directors d " +
+    		   			"WHERE m.id = d.movieID AND d.directorName LIKE '%" + str + "%' " +
+    		   			"ORDER BY m.rtAudienceScore DESC " +
+    		   			"LIMIT 5";
+       
+       try {
+           ResultSet rs = stmt.executeQuery(sql);
+           ResultSetMetaData rsmd = rs.getMetaData();
+           int columnsNumber = rsmd.getColumnCount();
+
+           // print out the column titles separated by tab
+           for (int i = 1; i <= columnsNumber; i++) {
+                   retval += rsmd.getColumnName(i) + "\t";
+               }
+           retval += "\n";
+
+           // print out each tuple
+           int j = 1;
+           while (rs.next()) {
+           	retval += j + ".\t";
+
+               for (int i = 1; i <= columnsNumber; i++) {
+                   if (i > 1) retval += ",  ";
+                   String columnValue = rs.getString(i);
+                   retval += columnValue;
+               }
+               retval += "\n";
+               j++;
+           }
+
+       } catch (SQLException ex){
+           retval = "Whoops you suck!";
+           return retval;
+       }
+       try{
+          	close();
+   	   }
+          catch(Exception E){
+       	   System.out.println("didnt close");
+   	   }
+       return retval;
+   }
+}
