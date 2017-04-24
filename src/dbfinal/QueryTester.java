@@ -146,7 +146,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -202,7 +202,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -257,7 +257,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -311,7 +311,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -366,7 +366,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -423,7 +423,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -480,7 +480,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -534,7 +534,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -587,7 +587,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -642,7 +642,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
@@ -697,7 +697,7 @@ public class QueryTester {
            // print out each tuple
            int j = 1;
            while (rs.next()) {
-           	retval += j + ".\t";
+        	   retval += " " + j + ".\t";
 
                for (int i = 1; i <= columnsNumber; i++) {
                    if (i > 1) retval += ",  ";
