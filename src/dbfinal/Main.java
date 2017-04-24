@@ -16,7 +16,9 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.image.ImageViewBuilder;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -35,14 +37,22 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 	Button q9;
 	Button q10;
 	Button clear;*/
+	String q;
 	TextField t1;	
+	TextField id;
+	TextField recField;
 	Label output;
 	Label title;
+	Label info;
+	Label recMe;
 	Button search;
 	Button show;
+	Button recDo;
 	ComboBox<String> select;
 	ComboBox<String> howMany;
-	ImageView iv;
+	ComboBox<String> rec;
+	ImageView iv1;
+	ImageView iv2;
 	
 	ArrayList<String> query;
 	
@@ -54,13 +64,20 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 		primaryStage.setTitle("Movie Recommender 3000");
 		VBox layout = new VBox();
 		HBox menu = new HBox();
-		iv = new ImageView();
+		Label space = new Label();
+		ScrollPane scroll = new ScrollPane();
+		scroll.setMinHeight(350);
+		HBox picMenu = new HBox();
+		HBox recMenu = new HBox();
 		
+		//directions at the top
 		title = new Label();
 		title.setText("Search By:");
 		title.setStyle("-fx-font: 24 arial;");
 		
-		select = new ComboBox();
+		
+		//select what type of information to show
+		select = new ComboBox<String>();
 		select.getItems().addAll("Top Movies", "Movie Title", "Genre", "Director", "Actor", "Movies with tag", "Top Directors", "Top Actors", "Ratings by Id", "Movie Tags");
 		select.setMinWidth(150);
 		select.setOnAction(new EventHandler<ActionEvent>()
@@ -71,37 +88,72 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 			}
 		});
 		
-		howMany = new ComboBox();
+		//Select how many items to show
+		howMany = new ComboBox<String>();
 		howMany.getItems().addAll("10", "20", "50");
 		howMany.setMinWidth(70);
 		howMany.setMaxWidth(70);
 		howMany.setVisible(false);
 		
+		//Search button
 		search = new Button();
 		search.setText("Search");
 		search.setMinWidth(70);
 		search.setMaxWidth(70);
 		search.setOnAction(this);
 		
+		//text area for user input
 		t1 = new TextField();		
-		t1.setPrefWidth(710);
-		t1.setVisible(false);
-
-		ScrollPane scroll = new ScrollPane();
+		t1.setPrefWidth(750);
+		t1.setVisible(false);	
+		
+		//shows query output
 		output = new Label();
+		output.setStyle("-fx-font-family: monospace");
+        output.setWrapText(false);
 		
-		scroll.setContent(output);
+		//tells user to input id
+		info = new Label();
+		info.setText("Input the movie number to see its picture: ");
+		info.setStyle("-fx-font: 20 arial;");
 		
-		HBox picMenu = new HBox();
+		//reads in 
+		id = new TextField();
+		id.setPrefWidth(177);
+		
+		//show button to display images
 		show = new Button();
 		show.setText("Show Me the Pictures!");
 		show.setMinWidth(250);
 		show.setOnAction(this);
-		picMenu.getChildren().add(show);
 		
+		//recommendation label
+		recMe = new Label();
+		recMe.setText("Let us recommend some movies: ");
+		recMe.setStyle("-fx-font: 24 arial;");
+		
+		//recommendation combobox
+		rec = new ComboBox<String>();
+		rec.getItems().addAll("Genre", "Director");
+		rec.setMinWidth(100);
+		
+		//recommendation input
+		recField = new TextField();
+		recField.setPrefWidth(700);
+		
+		//recommendation button
+		recDo = new Button();
+		recDo.setText("Show me some movies!");
+		recDo.setMinWidth(250);
+		recDo.setOnAction(this);
+		
+		
+		//construct the view
+		scroll.setContent(output);
 		menu.getChildren().addAll(select, t1, howMany, search);
-		
-		layout.getChildren().addAll(title, menu, scroll, picMenu);
+		picMenu.getChildren().addAll(info, id, show);
+		recMenu.getChildren().addAll(rec, recField, recDo);
+		layout.getChildren().addAll(title, menu, scroll, picMenu, space, recMe, recMenu);
 		Scene scene = new Scene(layout, 800, 500);
 		primaryStage.setScene(scene);
 		primaryStage.show();
@@ -109,27 +161,13 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 	
 	@Override
 	public void handle(ActionEvent event) {
-		// TODO Auto-generated method stub
-		if(event.getSource() == show){
-	        try {
-	        	HBox h = new HBox();
-	        	
-	        	
-	            Stage stage = new Stage();
-	            stage.setTitle("Movie Images");
-	            stage.setScene(new Scene(h, 450, 450));
-	            stage.show();
-	        }
-	        catch (Exception e) {
-	            e.printStackTrace();
-	        }
-		}
-		String q = "";
 		String s = "";
+		String in;
+		
+		//onclick for search
 		if(select.getSelectionModel().getSelectedItem() != null){
 			s = select.getSelectionModel().getSelectedItem();
 		}
-		String in;
 		if(s.equals("Top Movies")){
 			in = howMany.getSelectionModel().getSelectedItem();
 			q = QueryTester.query1(in);
@@ -181,7 +219,64 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 			q = QueryTester.query10(in);
 			output.setText(q);
 		}
-		grabURL(q);
+		
+		//onclick of recommendation
+		if(rec.getSelectionModel().getSelectedItem() != null){
+			s = rec.getSelectionModel().getSelectedItem();
+		}
+		if(event.getSource() == recDo){
+			if(s.equals("Genre")){
+				in = recField.getText();
+				q = QueryTester.query11(in);
+				output.setText(q);
+			}
+			if(s.equals("Director")){
+				in = recField.getText();
+				q = QueryTester.query12(in);
+				output.setText(q);
+			}
+		}
+		//onclick for showing pictures
+		if(event.getSource() == show){
+	        try {
+	        	//take user input and get the index
+	        	int i = 0;
+	        	if(!id.getText().equals("")){
+	        		i = Integer.parseInt(id.getText());
+	        		System.out.println(i);
+	        		i = i*2-2;
+	        		System.out.println(i);
+	        		System.out.println(query.size());
+		        	String image1 = "http://" + query.get(i);
+		        	String image2 = "http://" + query.get(i+1);
+		        	System.out.println(query.get(i));
+		        	System.out.println(query.get(i+1));
+		        	HBox h = new HBox();
+		        	
+		        	//create the images
+		    		iv1 = ImageViewBuilder.create().image(new Image(image1)).build();
+		    		iv1.setFitWidth(225);
+		    		iv1.setPreserveRatio(true);
+		    		iv2 = ImageViewBuilder.create().image(new Image(image2)).build();
+		    		iv2.setFitWidth(225);
+		    		iv2.setPreserveRatio(true);
+		    		
+		    		h.getChildren().addAll(iv1, iv2);
+		            Stage stage = new Stage();
+		            stage.setTitle("Movie Images");
+		            stage.setScene(new Scene(h, 450, 450));
+		            stage.show();
+	        	}
+	        	
+	        }
+	        catch (Exception e) {
+	            e.printStackTrace();
+	        }
+		}
+		if(!s.equals("")){
+			grabURL(q);
+		}
+		
 	}
 	
 	public void handleComboBoxAction(){
@@ -240,10 +335,11 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 	
 	private ArrayList<String> grabURL(String in)
 	{
-		ArrayList<String> retval = new ArrayList<String>();
+		query = new ArrayList<String>();
 		String[] vals = in.split(" ");
 		String t = "";
 		int i = 0;
+		int j = 0;
 		for(String s : vals)
 		{
 			if(s.length()>7)
@@ -251,12 +347,38 @@ public class Main extends Application implements EventHandler<ActionEvent>{
 				t = s.substring(0, 7);
 				if(t.equals("http://"))
 				{
-					retval.add(s.substring(7, s.length()-1));
+					String sub = s.substring(7, s.length()-1);
+					
+					//first url
+					if(j == 0){
+						if(!sub.contains("flixster") && !sub.contains("rottentomatoes")){
+							query.add("placeholder");
+							j = 1;
+						}
+						query.add(sub);
+					}
+					
+					//second url
+					else {
+						if(!sub.contains("ia.media")){
+							query.add("placeholder");
+							j = 0;
+						}
+						query.add(sub);
+					}
+					
+					//increment
 					i++;
+					if(j == 0){
+						j = 1;
+					}
+					else {
+						j = 0;
+					}
 				}
 			}
 		}
-		return retval;
+		return query;
 	}
 
 /*	@Override
